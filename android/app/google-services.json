@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "37515243494",
+    "project_id": "siyas-aqi-project",
+    "storage_bucket": "siyas-aqi-project.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37515243494:android:3dd586e0c9461b4ac67027",
+        "android_client_info": {
+          "package_name": "com.example.vayu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiSplMGtNy39lLr9VKGstEB_Uo1gTkFNU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,106 @@
+name: vayu
+description: "A Personal Air Health Intelligence System"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: '>=3.19.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+
+  # Navigation
+  go_router: ^14.2.0
+
+  # Networking
+  dio: ^5.4.3+1
+  retrofit: ^4.1.0
+
+  # Maps & Location
+  google_maps_flutter: ^2.6.1
+  flutter_map: ^6.1.0
+  latlong2: ^0.9.0
+  geolocator: ^12.0.0
+  flutter_background_geolocation: ^4.14.4
+  geocoding: ^3.0.0
+  flutter_polyline_points: ^2.1.0
+
+  # Camera & ML
+  camera: ^0.11.0+1
+  tflite_flutter: ^0.10.4
+  image: ^4.1.7
+
+  # Local Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  drift: ^2.16.0
+  sqlite3_flutter_libs: ^0.5.21
+  shared_preferences: ^2.2.3
+  flutter_secure_storage: ^9.0.0
+
+  # Firebase
+  firebase_core: ^2.30.1
+  firebase_auth: ^4.19.4
+  cloud_firestore: ^4.17.3
+  firebase_messaging: ^14.9.1
+  firebase_remote_config: ^4.4.4
+  firebase_crashlytics: ^3.5.4
+  firebase_storage: ^11.7.4
+  firebase_app_check: ^0.2.2+4
+
+  # UI Components
+  fl_chart: ^0.68.0
+  shimmer: ^3.0.0
+  lottie: ^3.1.0
+  google_fonts: ^6.2.1
+  cached_network_image: ^3.3.1
+  flutter_svg: ^2.0.10+1
+
+  # Utilities
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
+  intl: ^0.19.0
+  uuid: ^4.3.3
+  permission_handler: ^11.3.1
+  connectivity_plus: ^6.0.3
+  path_provider: ^2.1.3
+  equatable: ^2.0.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.2
+  build_runner: ^2.4.9
+  freezed: ^2.5.2
+  json_serializable: ^6.7.1
+  retrofit_generator: ^8.1.0
+  riverpod_generator: ^2.4.0
+  drift_dev: ^2.16.0
+  mockito: ^5.4.4
+  mocktail: ^1.0.3
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/models/
+    - assets/models/labels/
+    - assets/images/
+    - assets/animations/
+
+  # fonts:
+  #   - family: Inter
+  #     fonts:
+  #       - asset: assets/fonts/Inter-Regular.ttf
+  #       - asset: assets/fonts/Inter-Medium.ttf
+  #         weight: 500
+  #       - asset: assets/fonts/Inter-SemiBold.ttf
+  #         weight: 600
+  #       - asset: assets/fonts/Inter-Bold.ttf
+  #         weight: 700
