@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VAYU — Breathe Intelligence</title>
+  <meta name="description" content="VAYU: Your personal AI health coach for air quality and respiratory wellness.">
+  <link rel="stylesheet" href="css/style.css?v=debug1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ======================== LANDING SCREEN ======================== -->
+  <div id="landing-screen" class="screen active">
+    <div class="landing-screen">
+      <div class="circle-blur top"></div>
+      <div class="circle-blur bottom"></div>
+
+      <div class="landing-brand">
+        <div class="logo-icon"><span class="material-icons">air</span></div>
+        <h1>VAYU</h1>
+      </div>
+
+      <div class="landing-content">
+        <h2>Breathe Intelligence.</h2>
+        <p>Your personal AI health coach for air quality and respiratory wellness.</p>
+      </div>
+
+      <div class="landing-actions">
+        <button class="btn-primary" onclick="navigateTo('dashboard-screen')">Get Started</button>
+        <button class="btn-outline" onclick="navigateTo('dashboard-screen')">I already have an account</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== DASHBOARD SCREEN ======================== -->
+  <div id="dashboard-screen" class="screen">
+    <div class="dashboard">
+      <!-- Header -->
+      <div class="dashboard-header">
+        <div>
+          <div class="title">VAYU (LIVE)</div>
+          <div class="subtitle">Hello, User • Real-time Air Health</div>
+        </div>
+        <button id="theme-toggle-btn" class="profile-btn">
+          <span class="material-icons">dark_mode</span>
+        </button>
+      </div>
+
+      <!-- Hero AQI Card -->
+      <div class="vayu-card white hero-aqi">
+        <div class="location-row">
+          <span class="material-icons" style="font-size:16px">location_on</span>
+          <span>New Delhi, India</span>
+          <span class="safe-badge">🏡 SAFE ZONE</span>
+        </div>
+        <div class="divider"></div>
+        <div class="aqi-row">
+          <div class="aqi-left">
+            <div class="label">Current AQI</div>
+            <div class="value" id="dash-aqi-val" style="color: var(--aqi-good);">45</div>
+            <div class="category" id="dash-aqi-cat" style="color: var(--aqi-good);">GOOD</div>
+          </div>
+          <div class="aqi-icon" id="dash-aqi-icon" style="background: transparent; box-shadow: 0 0 0 2px var(--aqi-good), 0 0 15px var(--aqi-good);">
+            <span class="material-icons" style="font-size:48px; color: var(--aqi-good);">air</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Safe Zone Setter -->
+      <div class="vayu-card teal-bg safe-zone-action">
+        <span class="material-icons" style="color: var(--teal-700);">add_location_alt</span>
+        <div class="text" style="flex:1;">
+          <h4>Set Your Safe Zone (Home)</h4>
+          <p>Used to auto-detect Indoor vs Outdoor exposure.</p>
+        </div>
+        <span class="material-icons" style="color: var(--teal-700);">chevron_right</span>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="vayu-card stat-card">
+          <div class="icon-wrap" style="background: rgba(0,121,107,0.1);">
+            <span class="material-icons" style="color: var(--teal-700);">health_and_safety</span>
+          </div>
+          <div class="stat-value" style="color: var(--teal-700);">12.4</div>
+          <div class="stat-label">EXPOSURE</div>
+        </div>
+        <div class="vayu-card stat-card">
+          <div class="icon-wrap" style="background: rgba(0,121,107,0.1);">
+            <span class="material-icons" style="color: var(--teal-700);">directions_walk</span>
+          </div>
+          <div class="stat-value" style="color: var(--teal-700);">45m</div>
+          <div class="stat-label">OUTDOORS</div>
+        </div>
+        <div class="vayu-card stat-card">
+          <div class="icon-wrap" style="background: rgba(2,136,209,0.1);">
+            <span class="material-icons" style="color: var(--blue);">analytics</span>
+          </div>
+          <div class="stat-value" style="color: var(--blue);">52</div>
+          <div class="stat-label">AVG AQI</div>
+        </div>
+        <div class="vayu-card stat-card">
+          <div class="icon-wrap" style="background: rgba(0,191,165,0.1);">
+            <span class="material-icons" style="color: var(--aqi-good);">warning_amber</span>
+          </div>
+          <div class="stat-value" style="color: var(--aqi-good);">LOW</div>
+          <div class="stat-label">RISK</div>
+        </div>
+      </div>
+
+      <!-- Exposure Insight -->
+      <div class="vayu-card dark-teal exposure-insight">
+        <span class="material-icons" style="font-size:32px;">eco</span>
+        <div>
+          <div class="insight-label">HEALTH INSIGHT</div>
+          <div class="insight-text">You reduced your PM2.5 exposure by 23% today by following healthy routes.</div>
+        </div>
+      </div>
+
+
+      <!-- Explore More Widget Grid -->
+      <div class="section-title">Explore More</div>
+      <div class="widget-grid">
+
+        <div class="widget-card" onclick="navigateTo('insights-screen')">
+          <div class="widget-icon-wrap" style="background: rgba(2,136,209,0.1);">
+            <span class="material-icons" style="color: var(--blue);">bar_chart</span>
+          </div>
+          <div class="widget-title">AI Insights</div>
+          <div class="widget-sub">Forecasts &amp; trends</div>
+        </div>
+
+        <div class="widget-card" onclick="navigateTo('coach-screen')">
+          <div class="widget-icon-wrap" style="background: rgba(0,150,136,0.1);">
+            <span class="material-icons" style="color: var(--primary-dark);">face_retouching_natural</span>
+          </div>
+          <div class="widget-title">Recovery Coach</div>
+          <div class="widget-sub">Personalized guidance</div>
+        </div>
+
+        <div class="widget-card" onclick="navigateTo('sim-screen')">
+          <div class="widget-icon-wrap" style="background: rgba(156,39,176,0.1);">
+            <span class="material-icons" style="color: var(--purple);">settings_input_component</span>
+          </div>
+          <div class="widget-title">Exposure Simulator</div>
+          <div class="widget-sub">4-hour AI projection</div>
+        </div>
+
+      </div>
+
+      <!-- Exposure Trend -->
+      <div class="section-title">Daily Exposure Trend</div>
+      <div class="vayu-card chart-placeholder" style="padding: 32px 16px 16px 16px;">
+        <canvas id="exposureChart" style="width:100%; height:100%;"></canvas>
+      </div>
+
+      <!-- Exercises -->
+      <div class="section-title small">DAILY AIR-SAFE EXERCISES</div>
+      <div class="exercise-row">
+        <div class="exercise-card">
+          <div class="icon-wrap" style="background: rgba(0,121,107,0.1);">
+            <span class="material-icons accent-teal-dark">air</span>
+          </div>
+          <h4>Box Breathing</h4>
+          <p>Clear out lung toxins with controlled breathing.</p>
+          <div class="footer">
+            <span class="time"><span class="material-icons" style="font-size:12px;">timer</span> 5 min</span>
+            <span class="material-icons play-icon">play_circle_filled</span>
+          </div>
+        </div>
+        <div class="exercise-card">
+          <div class="icon-wrap" style="background: rgba(255,152,0,0.1);">
+            <span class="material-icons accent-orange">coffee</span>
+          </div>
+          <h4>Antioxidant Tea</h4>
+          <p>Reduce inflammation with green tea blend.</p>
+          <div class="footer">
+            <span class="time"><span class="material-icons" style="font-size:12px;">timer</span> 10 min</span>
+            <span class="material-icons play-icon">play_circle_filled</span>
+          </div>
+        </div>
+        <div class="exercise-card">
+          <div class="icon-wrap" style="background: rgba(156,39,176,0.1);">
+            <span class="material-icons accent-purple">accessibility_new</span>
+          </div>
+          <h4>Indoor Yoga</h4>
+          <p>Gentle stretches for respiratory health.</p>
+          <div class="footer">
+            <span class="time"><span class="material-icons" style="font-size:12px;">timer</span> 15 min</span>
+            <span class="material-icons play-icon">play_circle_filled</span>
+          </div>
+        </div>
+        <div class="exercise-card">
+          <div class="icon-wrap" style="background: rgba(76,175,80,0.1);">
+            <span class="material-icons accent-green">park</span>
+          </div>
+          <h4>Indoor Plants</h4>
+          <p>Natural air purification at home.</p>
+          <div class="footer">
+            <span class="time"><span class="material-icons" style="font-size:12px;">timer</span> 20 min</span>
+            <span class="material-icons play-icon">play_circle_filled</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- ======================== AI COACH SCREEN ======================== -->
+  <div id="coach-screen" class="screen sheet-screen" onclick="handleBackdropClick(event, 'dashboard-screen')">
+    <div class="sheet-panel" onclick="event.stopPropagation()">
+      <div class="sheet-drag-handle"></div>
+      <button class="sheet-close" onclick="navigateTo('dashboard-screen')" aria-label="Close">
+        <span class="material-icons">close</span>
+      </button>
+      <div class="coach-screen">
+        <div class="coach-header">
+          <h2>Your Personal Recovery</h2>
+          <p>Tailored insights based on today's exposure.</p>
+        </div>
+
+        <div class="coach-scroll">
+          <!-- Recovery Recommendations -->
+          <div class="vayu-card recovery-card">
+            <div class="rec-row">
+              <div class="icon-wrap" style="background: rgba(0,191,165,0.1); width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <span class="material-icons accent-teal">air</span>
+              </div>
+              <div>
+                <div class="rec-title">Deep Breathing Exercise</div>
+                <div class="rec-desc">Practice 4-7-8 breathing technique for 5 minutes to help clear PM2.5 particles from your lungs.</div>
+              </div>
+            </div>
+          </div>
+          <div class="vayu-card recovery-card">
+            <div class="rec-row">
+              <div class="icon-wrap" style="background: rgba(255,179,0,0.1); width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <span class="material-icons accent-amber">local_cafe</span>
+              </div>
+              <div>
+                <div class="rec-title">Anti-Inflammatory Tea</div>
+                <div class="rec-desc">Prepare a cup of turmeric + ginger tea. Both are scientifically proven to reduce airway inflammation.</div>
+              </div>
+            </div>
+          </div>
+          <div class="vayu-card recovery-card">
+            <div class="rec-row">
+              <div class="icon-wrap" style="background: rgba(2,136,209,0.1); width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <span class="material-icons" style="color:var(--blue)">home</span>
+              </div>
+              <div>
+                <div class="rec-title">Indoor Air Purification</div>
+                <div class="rec-desc">Consider running your HEPA filter. Current outdoor AQI suggests staying indoors for the next 2 hours.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="coach-divider"></div>
+
+          <!-- Chat History -->
+          <div class="chat-bubble">Hello! Based on today's AQI of 45 in your area, your exposure risk is low. Keep up the good habits! 🌿</div>
+          <div class="chat-bubble user">What should I do if AQI gets worse?</div>
+          <div class="chat-bubble">Great question! If AQI crosses 100, I recommend: wearing an N95 mask outdoors, reducing outdoor exercise, and running your air purifier indoors. I'll alert you automatically.</div>
+        </div>
+
+        <div class="coach-input-bar">
+          <input type="text" placeholder="Ask Vayu Health..." id="coach-input">
+          <button class="send-btn" onclick="sendCoachMessage()"><span class="material-icons">send</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ======================== SIMULATION SCREEN ======================== -->
+  <div id="sim-screen" class="screen sheet-screen" onclick="handleBackdropClick(event, 'dashboard-screen')">
+    <div class="sheet-panel" onclick="event.stopPropagation()">
+      <div class="sheet-drag-handle"></div>
+      <button class="sheet-close" onclick="navigateTo('dashboard-screen')" aria-label="Close">
+        <span class="material-icons">close</span>
+      </button>
+      <div class="sim-screen">
+      <div class="sim-appbar">4-HOUR AI SIMULATOR</div>
+
+      <!-- Main Simulator Chart Card -->
+      <div class="vayu-card sim-main-card" style="border-radius: var(--card-radius);">
+        <div class="atmosphere"></div>
+        <div class="chart-area">Comparison Chart — Baseline vs Projected Exposure</div>
+      </div>
+
+      <!-- Diagnostic Controls -->
+      <div class="sim-section-header">
+        <span class="material-icons">tune</span>
+        <span>DIAGNOSTIC CONTROLS</span>
+      </div>
+
+      <div class="scenario-chips">
+        <div class="scenario-chip active" data-scenario="indoor">STAY INDOOR</div>
+        <div class="scenario-chip" data-scenario="outdoor">OUTDOOR EXERCISE</div>
+        <div class="scenario-chip" data-scenario="motor">MOTORIZED TRANSIT</div>
+        <div class="scenario-chip" data-scenario="active">ACTIVE TRANSIT</div>
+      </div>
+      <div class="mask-toggle" id="mask-toggle">
+        <span class="material-icons" style="font-size:16px;">masks</span>
+        N95 MASK PROTECTION
+      </div>
+
+      <!-- Hour-by-Hour Timeline -->
+      <div class="sim-section-header">
+        <span class="material-icons">auto_graph</span>
+        <span>HOUR-BY-HOUR AI TIMELINE</span>
+      </div>
+
+      <div class="timeline-row">
+        <div class="timeline-card">
+          <div class="card-top">
+            <span class="time-label">HOUR 1 • 2:00 PM</span>
+            <span class="status-badge badge-safe">SAFE</span>
+          </div>
+          <div class="headline-row">
+            <div class="headline-icon hicon-teal"><span class="material-icons accent-teal">verified_user</span></div>
+            <div class="headline-text accent-teal">STABLE SHIELD</div>
+          </div>
+          <div class="impact-text">Indoor filtration at 90% efficiency. PM2.5 levels well within safe thresholds. No immediate risk detected.</div>
+          <div class="aqi-bar-section">
+            <div class="aqi-bar-labels">
+              <span class="left">POTENTIAL EXPOSURE</span>
+              <span class="right accent-teal">AQI 45</span>
+            </div>
+            <div class="aqi-bar-track">
+              <div class="aqi-bar-fill" style="width: 15%; background: #00BFA5;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-card">
+          <div class="card-top">
+            <span class="time-label">HOUR 2 • 3:00 PM</span>
+            <span class="status-badge badge-caution">CAUTION</span>
+          </div>
+          <div class="headline-row">
+            <div class="headline-icon hicon-amber"><span class="material-icons accent-amber">cloud</span></div>
+            <div class="headline-text accent-amber">RISING PARTICULATES</div>
+          </div>
+          <div class="impact-text">Wind shift from industrial corridor detected. PM2.5 projected to rise by 35% in next 45 minutes.</div>
+          <div class="aqi-bar-section">
+            <div class="aqi-bar-labels">
+              <span class="left">POTENTIAL EXPOSURE</span>
+              <span class="right accent-amber">AQI 95</span>
+            </div>
+            <div class="aqi-bar-track">
+              <div class="aqi-bar-fill" style="width: 32%; background: #FFB300;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-card">
+          <div class="card-top">
+            <span class="time-label">HOUR 3 • 4:00 PM</span>
+            <span class="status-badge badge-critical">CRITICAL</span>
+          </div>
+          <div class="headline-row">
+            <div class="headline-icon hicon-red"><span class="material-icons accent-red">bolt</span></div>
+            <div class="headline-text accent-red">INFLAMMATORY SURGE</div>
+          </div>
+          <div class="impact-text">Rush hour peak. Exposure without mask would cause measurable inflammatory response in 30 minutes.</div>
+          <div class="aqi-bar-section">
+            <div class="aqi-bar-labels">
+              <span class="left">POTENTIAL EXPOSURE</span>
+              <span class="right accent-red">AQI 168</span>
+            </div>
+            <div class="aqi-bar-track">
+              <div class="aqi-bar-fill" style="width: 56%; background: #E53935;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-card">
+          <div class="card-top">
+            <span class="time-label">HOUR 4 • 5:00 PM</span>
+            <span class="status-badge badge-caution">RECOVERING</span>
+          </div>
+          <div class="headline-row">
+            <div class="headline-icon hicon-teal"><span class="material-icons accent-teal">verified_user</span></div>
+            <div class="headline-text accent-teal">GRADUAL RECOVERY</div>
+          </div>
+          <div class="impact-text">Wind patterns shifting. AQI expected to stabilize. Indoor purification recommended for next 60 minutes.</div>
+          <div class="aqi-bar-section">
+            <div class="aqi-bar-labels">
+              <span class="left">POTENTIAL EXPOSURE</span>
+              <span class="right accent-amber">AQI 88</span>
+            </div>
+            <div class="aqi-bar-track">
+              <div class="aqi-bar-fill" style="width: 29%; background: #FFB300;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Diagnostic Outcome -->
+      <div class="sim-section-header">
+        <span class="material-icons">auto_graph</span>
+        <span>DIAGNOSTIC RESULTS</span>
+      </div>
+      <div class="vayu-card white" style="padding:24px; border-radius: 24px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="accent-slate" style="font-weight:900; font-size:10px; letter-spacing:2px;">DIAGNOSTIC OUTCOME</span>
+          <span class="status-badge badge-safe">SAFE</span>
+        </div>
+        <div style="margin-top:16px; font-size:20px; font-weight:900; color: var(--teal-900); line-height:1.1; letter-spacing:-0.5px;">Vitality preservation successful. Damage buffer +18.3%.</div>
+        <div style="margin-top:16px; font-size:14px; color: var(--grey-700); font-weight:500;">Indoor air filtration reduced your PM2.5 intake by an estimated 85%. Cumulative lung stress remains within safe operating parameters.</div>
+      </div>
+
+      <!-- Vitality Decay Card -->
+      <div class="vayu-card deep-black" style="padding:24px; border-radius: 24px; margin-top:32px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-weight:900; font-size:11px; letter-spacing:1.5px;">SYSTEM VITALITY DECAY</span>
+          <span class="material-icons accent-cyan" style="font-size:18px;">monitor_heart</span>
+        </div>
+        <div style="height:140px; margin-top:32px; display:flex; align-items:center; justify-content:center; color: rgba(255,255,255,0.2); font-weight:800; width: 100%;">
+          <canvas id="deteriorationChart" style="width:100%; height:100%;"></canvas>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-top:20px;">
+          <span style="color: rgba(255,255,255,0.24); font-size:9px; font-weight:700;">100% HEALTH</span>
+          <div style="height:1px; width:40px; background: rgba(255,255,255,0.1); align-self:center;"></div>
+          <span class="accent-red-light" style="font-size:9px; font-weight:900;">PREDICTED STRESS</span>
+        </div>
+      </div>
+
+      <!-- AI Recovery Protocols -->
+      <div class="sim-section-header">
+        <span class="material-icons">medical_information</span>
+        <span>AI RECOVERY PROTOCOLS</span>
+      </div>
+      <div class="protocol-card vayu-card white">
+        <div class="proto-header">
+          <span class="material-icons accent-cyan">security</span>
+          <span class="proto-title accent-cyan">RESPIRATORY DEFENSE</span>
+        </div>
+        <div class="proto-desc">Deploy N95 mask for outdoor exposure segments. Activate HEPA filtration in primary living quarters.</div>
+        <div class="proto-divider"></div>
+        <div class="proto-sub">SCIENTIFIC PROTOCOL</div>
+        <div class="proto-items">
+          <div class="proto-item proto-item-cyan"><span class="material-icons" style="font-size:14px;">masks</span> N95 Mask</div>
+          <div class="proto-item proto-item-cyan"><span class="material-icons" style="font-size:14px;">air</span> HEPA Purifier</div>
+        </div>
+      </div>
+      <div class="protocol-card vayu-card white">
+        <div class="proto-header">
+          <span class="material-icons accent-amber-deep">restaurant_menu</span>
+          <span class="proto-title accent-amber-deep">DIETARY INTERVENTION</span>
+        </div>
+        <div class="proto-desc">Introduce anti-inflammatory compounds to counteract oxidative stress from PM2.5 inhalation.</div>
+        <div class="proto-divider"></div>
+        <div class="proto-sub">SCIENTIFIC PROTOCOL</div>
+        <div class="proto-items">
+          <div class="proto-item proto-item-amber"><span class="material-icons" style="font-size:14px;">bolt</span> Vitamin C</div>
+          <div class="proto-item proto-item-amber"><span class="material-icons" style="font-size:14px;">auto_awesome</span> Turmeric</div>
+          <div class="proto-item proto-item-amber"><span class="material-icons" style="font-size:14px;">waves</span> Omega-3</div>
+          <div class="proto-item proto-item-amber"><span class="material-icons" style="font-size:14px;">eco</span> Broccoli Sprouts</div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== MAP ROUTES SCREEN ======================== -->
+  <div id="map-screen" class="screen">
+    <div class="map-screen">
+      <div class="map-container">
+        <div class="map-placeholder-visual">
+          <span class="material-icons start-pin">circle</span>
+          <div class="route-line"></div>
+          <span class="material-icons end-pin">place</span>
+        </div>
+      </div>
+
+      <div class="map-search-overlay">
+        <!-- Mode selector chips -->
+        <div style="display:flex; gap:8px; margin-bottom:12px; justify-content:center;" class="route-mode-chips">
+          <div class="chip selected" data-profile="driving-car" onclick="selectRouteMode(this)">DRIVE</div>
+          <div class="chip" data-profile="foot-walking" onclick="selectRouteMode(this)">WALK</div>
+          <div class="chip" data-profile="cycling-regular" onclick="selectRouteMode(this)">CYCLE</div>
+        </div>
+        <div class="map-search-input">
+          <span class="material-icons">circle</span>
+          <input type="text" placeholder="Origin" style="margin-left:8px;" id="origin-input" value="Gandhi Park, Delhi">
+          <span class="material-icons" id="gps-origin-btn" style="cursor:pointer;">gps_fixed</span>
+        </div>
+        <div class="map-search-input">
+          <span class="material-icons">place</span>
+          <input type="text" placeholder="Enter Destination" style="margin-left:8px;" id="destination-input" value="ITO Junction, Delhi">
+          <span class="material-icons" id="route-search-btn" style="cursor:pointer;">search</span>
+        </div>
+      </div>
+
+      <!-- Route Preference chips selector -->
+      <div class="route-preference-wrap">
+        <div style="font-size: 10px; font-weight: 800; color: var(--grey-500); letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; text-align: center;">Route Optimization Mode</div>
+        <div style="display:flex; gap:8px; justify-content:center;" class="route-preference-chips">
+          <div class="chip" data-pref="speed" onclick="selectRoutePreference(this)">SPEED</div>
+          <div class="chip selected" data-pref="balanced" onclick="selectRoutePreference(this)">BALANCED</div>
+          <div class="chip" data-pref="health" onclick="selectRoutePreference(this)">HEALTH</div>
+        </div>
+      </div>
+
+      <div class="route-panel">
+        <div class="vayu-card route-card selected" style="border-radius:var(--card-radius);">
+          <div class="best-badge">🏆 VAYU BEST CHOICE</div>
+          <div class="route-header">
+            <div class="route-mode">
+              <span class="material-icons" style="color:var(--teal-800);">directions_walk</span>
+              WALK - 28 min
+            </div>
+            <div class="route-badge" style="background: rgba(60,211,173,0.1); color: var(--primary);">-32% PM2.5</div>
+          </div>
+          <div class="route-summary">Cleanest air route via Gandhi Park. Avoids ITO junction congestion zone. Greenery score: High.</div>
+          <div class="route-stats">
+            <div class="stat"><span class="material-icons" style="font-size:16px;">straighten</span> 2.1 km</div>
+            <div class="stat"><span class="material-icons" style="font-size:16px;">eco</span> Eco: 78%</div>
+            <div class="stat"><span class="material-icons" style="font-size:16px;">traffic</span> Traffic: 12%</div>
+          </div>
+        </div>
+        <div class="vayu-card white route-card" style="border-radius:var(--card-radius);">
+          <div class="route-header">
+            <div class="route-mode">
+              <span class="material-icons" style="color:var(--teal-800);">directions_car</span>
+              DRIVE - 12 min
+            </div>
+            <div class="route-badge" style="background: rgba(255,171,0,0.1); color: var(--aqi-moderate);">+15% PM2.5</div>
+          </div>
+          <div class="route-summary">Fastest route via Ring Road. Higher exposure due to traffic congestion at peak hours.</div>
+          <div class="route-stats">
+            <div class="stat"><span class="material-icons" style="font-size:16px;">straighten</span> 4.5 km</div>
+            <div class="stat"><span class="material-icons" style="font-size:16px;">eco</span> Eco: 22%</div>
+            <div class="stat"><span class="material-icons" style="font-size:16px;">traffic</span> Traffic: 85%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== PROFILE SCREEN ======================== -->
+  <div id="profile-screen" class="screen">
+    <div class="profile-screen">
+      <h2>Personalize Your Health</h2>
+      <p class="profile-sub">Help Vayu calculate your personal exposure risk accurately.</p>
+
+      <div class="vayu-card profile-form-card">
+        <label>Age Group</label>
+        <input type="range" min="0" max="100" value="25" step="1" id="age-slider" style="--val: 25%;">
+        <div style="text-align:right; font-size:12px; color: var(--grey-500); margin-bottom:24px;" id="age-display">25 years</div>
+
+        <label>Specific Conditions</label>
+        <div class="chips">
+          <div class="chip" onclick="this.classList.toggle('selected')">ASTHMA</div>
+          <div class="chip" onclick="this.classList.toggle('selected')">COPD</div>
+          <div class="chip" onclick="this.classList.toggle('selected')">CARDIOVASCULAR</div>
+          <div class="chip" onclick="this.classList.toggle('selected')">ALLERGIES</div>
+          <div class="chip" onclick="this.classList.toggle('selected')">DIABETES</div>
+        </div>
+
+        <label style="display:flex; justify-content:space-between; align-items:center; cursor:pointer;">
+          Currently Pregnant
+          <input type="checkbox" class="pregnant-checkbox">
+        </label>
+
+        <div style="margin-top:24px;">
+          <label>Respiratory Protection</label>
+          <div class="select-wrapper">
+            <select class="profile-select">
+              <option>No Protection</option>
+              <option>Cloth Mask</option>
+              <option>Surgical Mask</option>
+              <option selected>N95 Respirator</option>
+            </select>
+            <span class="material-icons select-icon">expand_more</span>
+          </div>
+        </div>
+
+        <div style="margin-top:32px;">
+          <button class="vayu-btn" onclick="navigateTo('dashboard-screen')">Update My Profile</button>
+        </div>
+      </div>
+
+      <div class="vayu-card sensitivity-card">
+        <span class="material-icons">speed</span>
+        <div style="flex:1;">
+          <div class="sens-title">Your vulnerability multiplier is 1.15x</div>
+          <div class="sens-sub">Protection factor active: 0.85x</div>
+          <div class="multiplier-bar-container">
+            <div class="multiplier-bar-fill" style="width: 15%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== INSIGHTS SCREEN ======================== -->
+  <div id="insights-screen" class="screen sheet-screen" onclick="handleBackdropClick(event, 'dashboard-screen')">
+    <div class="sheet-panel" onclick="event.stopPropagation()">
+      <div class="sheet-drag-handle"></div>
+      <button class="sheet-close" onclick="navigateTo('dashboard-screen')" aria-label="Close">
+        <span class="material-icons">close</span>
+      </button>
+      <div class="vayu-bg-screen" style="padding: 40px 24px 32px;">
+        <h2 style="color:white; font-weight:900; font-size:24px;">AI Insights &amp; Forecasts</h2>
+        <p style="color:rgba(255,255,255,0.7); margin-top:8px;">Predictive analytics and recovery plans.</p>
+        <div class="vayu-card" style="margin-top:32px; padding:32px;">
+          <div class="skeleton-shimmer" style="height: 120px; border-radius: 12px; margin-bottom: 16px;"></div>
+          <div class="skeleton-shimmer" style="height: 24px; border-radius: 6px; width: 60%; margin-bottom: 8px;"></div>
+          <div class="skeleton-shimmer" style="height: 24px; border-radius: 6px; width: 80%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ======================== BOTTOM NAV BAR ======================== -->
+  <nav id="bottom-nav" class="bottom-nav" aria-label="Main navigation">
+    <button class="bnav-item" id="bnav-home" onclick="navigateTo('dashboard-screen')" aria-label="Home">
+      <span class="material-icons bnav-icon">home</span>
+      <span class="bnav-label">Home</span>
+      <span class="bnav-dot"></span>
+    </button>
+    <button class="bnav-item" id="bnav-routes" onclick="navigateTo('map-screen')" aria-label="Routes">
+      <span class="material-icons bnav-icon">alt_route</span>
+      <span class="bnav-label">Routes</span>
+      <span class="bnav-dot"></span>
+    </button>
+    <button class="bnav-item" id="bnav-profile" onclick="navigateTo('profile-screen')" aria-label="Profile">
+      <span class="material-icons bnav-icon">person</span>
+      <span class="bnav-label">Profile</span>
+      <span class="bnav-dot"></span>
+    </button>
+  </nav>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
